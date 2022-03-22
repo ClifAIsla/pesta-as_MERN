@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
 
+import Tap from './Componentes/Tap';
+
 function App() {
+  
+  const posicionInicial = [1,2,3]
+  const [tapOption,setTapOption] = useState( posicionInicial );
+  const [actualTap,setActualTap] = useState( 1 );
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <div className='etiqueta'>
+
+        {
+          tapOption.map( (etiqueta) => (
+
+            <div onClick={() => setActualTap(etiqueta)} key={etiqueta} >
+              Tab {etiqueta}
+            </div>
+          ))
+
+        }
+
+
+      </div>
+
+      {actualTap == 1 ? <Tap relleno="Tap 1 esta aqui." ></Tap> : ""}
+      {actualTap == 2 ? <Tap relleno="Tap 2 esta aqui." ></Tap> : ""}
+      {actualTap == 3 ? <Tap relleno="Tap 3 esta aqui." ></Tap> : ""}
     </div>
   );
 }
